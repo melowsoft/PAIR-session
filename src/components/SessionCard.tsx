@@ -80,27 +80,27 @@ export const SessionCard: React.FC<SessionCardProps> = ({ session, highlightQuer
       {/* Footer / Actions */}
       <div className="pt-4 border-t border-gray-100 flex items-center justify-between mt-auto">
         <button
-            onClick={() => onToggleComplete(session.id)}
-            className={`flex items-center gap-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 rounded-lg px-3 py-2 ${
-                session.completed 
-                ? 'text-green-700 bg-green-50 hover:bg-green-100' 
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-            }`}
-            aria-pressed={session.completed}
-            aria-label={`Mark ${session.title} as ${session.completed ? 'incomplete' : 'complete'}`}
-        >
-            {session.completed ? (
-                <>
-                    <CheckCircle className="w-4 h-4" />
-                    <span>Completed</span>
-                </>
-            ) : (
-                <>
-                    <Circle className="w-4 h-4" />
-                    <span>Mark Complete</span>
-                </>
-            )}
-        </button>
+  onClick={() => onToggleComplete(session.id)}
+  className={`flex items-center gap-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 rounded-lg px-3 py-2 ${
+      session.completed 
+      ? 'text-green-700 bg-green-50 hover:bg-green-100' 
+      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+  }`}
+  aria-pressed={session.completed}
+  aria-label={`Mark "${session.title}" as ${session.completed ? 'incomplete' : 'complete'}`}
+>
+    {session.completed ? (
+        <>
+            <CheckCircle className="w-4 h-4" />
+            <span>Completed</span>
+        </>
+    ) : (
+        <>
+            <Circle className="w-4 h-4" />
+            <span>Mark Complete</span>
+        </>
+    )}
+</button>
 
         {session.completed && (
             <span className="text-xs font-semibold text-green-600">Done!</span>

@@ -1,4 +1,3 @@
-// App.tsx
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import type { Session, SortOrder } from '../types';
 import { RAW_SESSIONS } from '../data';

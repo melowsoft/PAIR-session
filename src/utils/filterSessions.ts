@@ -12,21 +12,26 @@ export const filterAndSortSessions = (
   query: string,
   sortOrder: SortOrder
 ): Session[] => {
-
+  // Create a copy to avoid mutating the original array
   let result = [...sessions];
 
-  if (query.trim()) {
-    const lowerQuery = query.toLowerCase();
+  // 1. Filter by title (case-insensitive)
+  const trimmedQuery = query.trim();
+  if (trimmedQuery) {
+    const lowerQuery = trimmedQuery.toLowerCase();
     result = result.filter(session => 
       session.title.toLowerCase().includes(lowerQuery)
     );
   }
 
+  // 2. Sort (stable sort)
   result.sort((a, b) => {
+    // Primary sort: Popularity
     const popularityDiff = a.popularity - b.popularity;
     if (popularityDiff !== 0) {
       return sortOrder === 'asc' ? popularityDiff : -popularityDiff;
     }
+    // Secondary sort: ID (for stable sorting)
     return a.id.localeCompare(b.id);
   });
 
