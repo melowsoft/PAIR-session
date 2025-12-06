@@ -72,7 +72,6 @@ const App = () => {
   return (
     <div className="min-h-screen pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       
-      {/* Header */}
       <header className="py-8 md:py-12 text-center md:text-left">
         <div className="flex flex-col md:flex-row items-center gap-4">
             <div className="p-3 bg-blue-600 rounded-xl shadow-lg shadow-blue-200">
@@ -89,7 +88,6 @@ const App = () => {
         </div>
       </header>
 
-      {/* Main Content Area */}
       <main>
         <Controls 
           query={query} 
@@ -101,7 +99,6 @@ const App = () => {
           loading={loading && sessions.length === 0}
         />
 
-        {/* Results Count */}
         {!loading && !error && processedSessions.length > 0 && (
           <div className="mb-4 text-sm text-gray-600">
             Found {processedSessions.length} session{processedSessions.length !== 1 ? 's' : ''}
@@ -109,14 +106,12 @@ const App = () => {
           </div>
         )}
 
-        {/* Live Region for Screen Readers */}
         <div className="sr-only" aria-live="polite" aria-atomic="true">
           {loading ? 'Loading sessions...' : ''}
           {error ? `Error: ${error}` : ''}
           {!loading && !error ? `Showing ${processedSessions.length} sessions sorted by popularity ${sortOrder === 'desc' ? 'descending' : 'ascending'}.` : ''}
         </div>
 
-        {/* States */}
         {loading && sessions.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20" aria-busy="true">
             <Loader2 className="w-12 h-12 text-blue-600 animate-spin mb-4" />

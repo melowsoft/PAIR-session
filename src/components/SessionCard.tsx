@@ -34,7 +34,6 @@ export const SessionCard: React.FC<SessionCardProps> = ({ session, highlightQuer
       className={`group relative flex flex-col bg-white border rounded-xl p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:border-blue-300 ${session.completed ? 'opacity-85 bg-gray-50' : ''}`}
       aria-labelledby={`session-title-${session.id}`}
     >
-      {/* Top Meta Row */}
       <div className="flex justify-between items-start mb-3">
         <div className="flex flex-wrap gap-2">
             <DifficultyBadge level={session.difficulty} />
@@ -49,12 +48,12 @@ export const SessionCard: React.FC<SessionCardProps> = ({ session, highlightQuer
         </div>
       </div>
 
-      {/* Title */}
+    
       <h3 id={`session-title-${session.id}`} className="text-lg font-bold text-gray-900 mb-2 leading-snug group-hover:text-primary transition-colors">
         <HighlightText text={session.title} highlight={highlightQuery} />
       </h3>
 
-      {/* Tags */}
+
       <div className="mb-6 flex-grow">
        <div 
   className="flex flex-wrap gap-1.5"
@@ -77,7 +76,7 @@ export const SessionCard: React.FC<SessionCardProps> = ({ session, highlightQuer
 </div>
       </div>
 
-      {/* Footer / Actions */}
+
       <div className="pt-4 border-t border-gray-100 flex items-center justify-between mt-auto">
         <button
   onClick={() => onToggleComplete(session.id)}

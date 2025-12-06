@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, ArrowDownUp, AlertTriangle } from 'lucide-react';
+import { Search, ArrowDownUp } from 'lucide-react';
 import { SortOrder } from '../../types';
 
 interface ControlsProps {
@@ -25,7 +25,6 @@ export const Controls: React.FC<ControlsProps> = ({
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6 sticky top-4 z-10">
       <div className="flex flex-col md:flex-row gap-4 justify-between md:items-center">
         
-        {/* Search */}
         <div className="relative flex-grow max-w-lg">
           <label htmlFor="search-sessions" className="sr-only">
             Search sessions by title
@@ -46,9 +45,7 @@ export const Controls: React.FC<ControlsProps> = ({
           />
         </div>
 
-        {/* Action Group */}
         <div className="flex flex-wrap items-center gap-3">
-            {/* Sort Toggle */}
             <button
   id="sort-toggle"
   onClick={() => setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')}
@@ -56,7 +53,7 @@ export const Controls: React.FC<ControlsProps> = ({
   className="flex items-center gap-2 px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
   title="Toggle Sort Order"
   aria-label={`Sort by popularity ${sortOrder === 'desc' ? 'descending' : 'ascending'}`}
-  aria-pressed={sortOrder === 'asc'} // This should be true for 'asc', false for 'desc'
+  aria-pressed={sortOrder === 'asc'} 
 >
   <ArrowDownUp className={`w-4 h-4 transition-transform ${sortOrder === 'asc' ? 'rotate-180' : ''}`} />
   <span className="hidden sm:inline">Popularity</span>
@@ -68,7 +65,6 @@ export const Controls: React.FC<ControlsProps> = ({
   </span>
 </button>
 
-            {/* Error Simulator Toggle */}
             <div className="flex items-center gap-2 ml-auto md:ml-0">
               <label className="relative inline-flex items-center cursor-pointer group">
                 <input 

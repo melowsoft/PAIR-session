@@ -1,73 +1,36 @@
-# React + TypeScript + Vite
+# Learning Sessions Browser
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
+A React-based web application for browsing AI learning sessions with search, sort, and progress tracking functionality.
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Core Features
 
-## Expanding the ESLint configuration
+- Session Browsing: Display learning sessions with titles, tags, duration, difficulty, and popularity scores
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Interactive Search: Real-time search with 300ms debounce for optimal performance
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Smart Sorting: Sort sessions by popularity (ascending/descending) with stable sorting
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Progress Tracking: Mark sessions as complete/incomplete with visual feedback
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Responsive Design: Fully responsive layout that works on mobile, tablet, and desktop
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+src/
+├── components/          # React components
+│   ├── Controls.tsx    # Search and filter controls
+│   └── SessionCard.tsx # Individual session display
+├── hooks/              # Custom React hooks
+│   └── useDebounce.ts  # Debounce hook for search
+├── utils/              # Utility functions
+│   ├── filterSessions.ts # Filtering and sorting logic
+│   └── textHighlight.tsx # Text highlighting component
+├── types.ts            # TypeScript type definitions
+├── data.ts             # Mock session data
+└── __tests__/         # Test files
