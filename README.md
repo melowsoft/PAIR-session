@@ -1,36 +1,73 @@
-# Learning Sessions Browser
+# PAIR Learning Sessions App
 
-A React-based web application for browsing AI learning sessions with search, sort, and progress tracking functionality.
+A responsive, accessible React + TypeScript application built with
+**Vite** and styled with **TailwindCSS**. The app displays a catalog of
+learning sessions, allows users to search and sort them, track
+completion, simulate fetch errors, and test UI behaviour using
+**Jest** + **React Testing Library**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Features
+### ✔ Real-time Search (Debounced)
 
-## Core Features
+-   Search sessions by title or description.
+-   Uses a custom `useDebounce` hook for optimal performance.
 
-- Session Browsing: Display learning sessions with titles, tags, duration, difficulty, and popularity scores
+### ✔ Sorting
 
-- Interactive Search: Real-time search with 300ms debounce for optimal performance
+-   Sort sessions by popularity (ascending or descending).
 
-- Smart Sorting: Sort sessions by popularity (ascending/descending) with stable sorting
+### ✔ Completion Tracking
 
-- Progress Tracking: Mark sessions as complete/incomplete with visual feedback
+-   Toggle sessions as completed or not.
 
-- Responsive Design: Fully responsive layout that works on mobile, tablet, and desktop
+### ✔ Error Simulation
 
+-   Toggle to simulate API failures with retry behaviour.
 
-## Project Structure
+### ✔ Loading States
 
-src/
-├── components/          # React components
-│   ├── Controls.tsx    # Search and filter controls
-│   └── SessionCard.tsx # Individual session display
-├── hooks/              # Custom React hooks
-│   └── useDebounce.ts  # Debounce hook for search
-├── utils/              # Utility functions
-│   ├── filterSessions.ts # Filtering and sorting logic
-│   └── textHighlight.tsx # Text highlighting component
-├── types.ts            # TypeScript type definitions
-├── data.ts             # Mock session data
-└── __tests__/         # Test files
+-   Animated loader using Lucide icons.
+-   Full ARIA accessibility support.
+
+### ✔ Fully Tested
+
+-   Unit & integration tests (Jest + RTL + jest-dom).
+
+## 📁 Project Structure
+
+    src/
+     ├── components/
+     ├── hooks/
+     ├── utils/
+     ├── __tests__/
+     ├── App.tsx
+     └── main.tsx
+
+## 🛠 Tech Stack
+
+-   React 19 + TypeScript
+-   Vite
+-   TailwindCSS
+-   Jest + React Testing Library
+-   ESLint + Prettier
+
+## 📦 Installation
+
+    npm install
+
+## 🔧 Scripts
+
+    npm run dev
+    npm run build
+    npm run preview
+    npm run lint
+    npm run test
+    npm run test:watch
+    npm run test:coverage
+
+## ▶️ Running the App
+
+    npm run dev
+
+App opens at: http://localhost:5173

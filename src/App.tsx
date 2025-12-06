@@ -74,9 +74,6 @@ const App = () => {
       
       <header className="py-8 md:py-12 text-center md:text-left">
         <div className="flex flex-col md:flex-row items-center gap-4">
-            <div className="p-3 bg-blue-600 rounded-xl shadow-lg shadow-blue-200">
-                <BookOpen className="w-8 h-8 text-white" />
-            </div>
             <div>
                 <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                 Learning Sessions
