@@ -172,30 +172,10 @@
 <a name='L107'></a><a href='#L107'>107</a>
 <a name='L108'></a><a href='#L108'>108</a>
 <a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L110'></a><a href='#L110'>110</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">250x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">249x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">249x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,9 +183,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">250x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">638x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">589x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">589x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">589x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">638x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -238,7 +236,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">498x</span>
+<span class="cline-any cline-yes">1130x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -319,7 +317,6 @@ export const SessionCard: React.FC&lt;SessionCardProps&gt; = ({ session, highlig
       className={`group relative flex flex-col bg-white border rounded-xl p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:border-blue-300 ${session.completed ? 'opacity-85 bg-gray-50' : ''}`}
       aria-labelledby={`session-title-${session.id}`}
     &gt;
-      {/* Top Meta Row */}
       &lt;div className="flex justify-between items-start mb-3"&gt;
         &lt;div className="flex flex-wrap gap-2"&gt;
             &lt;DifficultyBadge level={session.difficulty} /&gt;
@@ -334,12 +331,12 @@ export const SessionCard: React.FC&lt;SessionCardProps&gt; = ({ session, highlig
         &lt;/div&gt;
       &lt;/div&gt;
 &nbsp;
-      {/* Title */}
+    
       &lt;h3 id={`session-title-${session.id}`} className="text-lg font-bold text-gray-900 mb-2 leading-snug group-hover:text-primary transition-colors"&gt;
         &lt;HighlightText text={session.title} highlight={highlightQuery} /&gt;
       &lt;/h3&gt;
 &nbsp;
-      {/* Tags */}
+&nbsp;
       &lt;div className="mb-6 flex-grow"&gt;
        &lt;div 
   className="flex flex-wrap gap-1.5"
@@ -362,7 +359,7 @@ export const SessionCard: React.FC&lt;SessionCardProps&gt; = ({ session, highlig
 &lt;/div&gt;
       &lt;/div&gt;
 &nbsp;
-      {/* Footer / Actions */}
+&nbsp;
       &lt;div className="pt-4 border-t border-gray-100 flex items-center justify-between mt-auto"&gt;
         &lt;button
   onClick={() =&gt; onToggleComplete(session.id)}
@@ -400,7 +397,7 @@ export const SessionCard: React.FC&lt;SessionCardProps&gt; = ({ session, highlig
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-12-06T17:16:00.489Z
+                at 2025-12-06T22:09:13.981Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

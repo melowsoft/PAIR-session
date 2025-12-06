@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, ArrowDownUp } from 'lucide-react';
+import { Search, ArrowDownUp, RefreshCw } from 'lucide-react';
 import { SortOrder } from '../../types';
 
 interface ControlsProps {
@@ -10,6 +10,7 @@ interface ControlsProps {
   simulateError: boolean;
   setSimulateError: (b: boolean) => void;
   loading: boolean;
+  onRefresh?: () => void;
 }
 
 export const Controls: React.FC<ControlsProps> = ({
@@ -19,7 +20,8 @@ export const Controls: React.FC<ControlsProps> = ({
   setSortOrder,
   simulateError,
   setSimulateError,
-  loading
+  loading,
+  onRefresh
 }) => {
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6 sticky top-4 z-10">
@@ -47,44 +49,65 @@ export const Controls: React.FC<ControlsProps> = ({
 
         <div className="flex flex-wrap items-center gap-3">
             <button
-  id="sort-toggle"
-  onClick={() => setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')}
+              id="sort-toggle"
+              onClick={() => setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')}
+              disabled={loading}
+              className="flex items-center gap-2 px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+              title="Toggle Sort Order"
+              aria-label={`Sort by popularity ${sortOrder === 'desc' ? 'descending' : 'ascending'}`}
+              aria-pressed={sortOrder === 'asc'} 
+            >
+              <ArrowDownUp className={`w-4 h-4 transition-transform ${sortOrder === 'asc' ? 'rotate-180' : ''}`} />
+              <span className="hidden sm:inline">Popularity</span>
+              <span 
+                className="bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded text-xs uppercase"
+                aria-label={`Current sort order: ${sortOrder}`}
+              >
+                {sortOrder}
+              </span>
+            </button>
+
+            {/* Refresh button - always visible */}
+           <button
+  onClick={onRefresh}
   disabled={loading}
-  className="flex items-center gap-2 px-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-  title="Toggle Sort Order"
-  aria-label={`Sort by popularity ${sortOrder === 'desc' ? 'descending' : 'ascending'}`}
-  aria-pressed={sortOrder === 'asc'} 
+  className="flex items-center gap-2 px-4 py-2.5 bg-blue-50 border border-blue-200 rounded-lg text-sm font-medium text-blue-700 hover:bg-blue-100 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+  title="Refresh sessions"
+  aria-label="Refresh sessions list"
 >
-  <ArrowDownUp className={`w-4 h-4 transition-transform ${sortOrder === 'asc' ? 'rotate-180' : ''}`} />
-  <span className="hidden sm:inline">Popularity</span>
-  <span 
-    className="bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded text-xs uppercase"
-    aria-label={`Current sort order: ${sortOrder}`}
-  >
-    {sortOrder}
-  </span>
+  <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+  <span>Refresh</span> {/* Remove "hidden sm:inline" class */}
 </button>
 
-            <div className="flex items-center gap-2 ml-auto md:ml-0">
-              <label className="relative inline-flex items-center cursor-pointer group">
-                <input 
-                  id="error-toggle"
-                  type="checkbox" 
-                  className="sr-only peer" 
-                  checked={simulateError}
-                  onChange={(e) => setSimulateError(e.target.checked)}
-                  disabled={loading}
-                  aria-label="Simulate error on next fetch"
-                />
+        <div className="flex items-center gap-2 ml-auto md:ml-0">
+            <button
+              type="button"
+              role="switch"
+              aria-checked={simulateError}
+              onClick={() => setSimulateError(!simulateError)}
+              onKeyDown={(e) => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                  e.preventDefault();
+                  setSimulateError(!simulateError);
+                }
+              }}
+              disabled={loading}
+              className="relative inline-flex items-center cursor-pointer group focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2 rounded"
+              aria-label="Simulate error on next fetch"
+            >
+              <div 
+                className={`w-11 h-6 ${simulateError ? 'bg-red-500' : 'bg-gray-200'} rounded-full transition-colors`}
+                aria-hidden="true"
+              >
                 <div 
-                  className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-red-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"
-                  aria-hidden="true"
+                  className={`absolute top-[2px] left-[2px] bg-white border border-gray-300 rounded-full h-5 w-5 transition-transform ${simulateError ? 'translate-x-5' : ''}`}
                 ></div>
-                <span className={`ml-2 text-sm font-medium transition-colors ${simulateError ? 'text-red-600' : 'text-gray-500'}`}>
-                  Simulate Error
-                </span>
-              </label>
-            </div>
+              </div>
+              <span className={`ml-2 text-sm font-medium transition-colors ${simulateError ? 'text-red-600' : 'text-gray-500'}`}>
+                Simulate Error
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

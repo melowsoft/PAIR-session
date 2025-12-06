@@ -5,7 +5,7 @@ import { SessionCard } from './components/SessionCard';
 import { Controls } from './components/Controls';
 import { useDebounce } from './hooks/useDebounce';
 import { filterAndSortSessions } from './utils/filterSessions';
-import { AlertCircle, RefreshCw, Loader2, BookOpen } from 'lucide-react';
+import { AlertCircle, RefreshCw, Loader2 } from 'lucide-react';
 
 const App = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -93,7 +93,8 @@ const App = () => {
           setSortOrder={setSortOrder}
           simulateError={simulateError}
           setSimulateError={setSimulateError}
-          loading={loading && sessions.length === 0}
+          loading={loading}
+          onRefresh={fetchSessions} // Pass fetchSessions as prop
         />
 
         {!loading && !error && processedSessions.length > 0 && (
@@ -103,11 +104,16 @@ const App = () => {
           </div>
         )}
 
-        <div className="sr-only" aria-live="polite" aria-atomic="true">
-          {loading ? 'Loading sessions...' : ''}
-          {error ? `Error: ${error}` : ''}
-          {!loading && !error ? `Showing ${processedSessions.length} sessions sorted by popularity ${sortOrder === 'desc' ? 'descending' : 'ascending'}.` : ''}
-        </div>
+        <div 
+  className="sr-only" 
+  aria-live="polite" 
+  aria-atomic="true"
+  aria-label="Live announcements"
+>
+  {loading ? 'Loading sessions...' : ''}
+  {error ? `Error: ${error}` : ''}
+  {!loading && !error ? `Showing ${processedSessions.length} sessions sorted by popularity ${sortOrder === 'desc' ? 'descending' : 'ascending'}.` : ''}
+</div>
 
         {loading && sessions.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20" aria-busy="true">
@@ -122,12 +128,13 @@ const App = () => {
             <h3 className="text-lg font-bold text-gray-900 mb-2">Unable to load sessions</h3>
             <p className="text-gray-600 mb-6">{error}</p>
             <button
-              onClick={fetchSessions}
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all"
-            >
-              <RefreshCw className="w-4 h-4" />
-              Try Again
-            </button>
+  onClick={fetchSessions}
+  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all"
+  aria-label="Try to load sessions again"
+>
+  <RefreshCw className="w-4 h-4" aria-hidden="true" />
+  <span>Try Again</span>
+</button>
           </div>
         ) : processedSessions.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-xl border border-dashed border-gray-300">

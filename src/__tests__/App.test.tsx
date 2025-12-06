@@ -357,11 +357,16 @@ test('is keyboard accessible', async () => {
   expect(sortButton).toHaveAttribute('aria-pressed', 'false');
   
   await user.tab();
+  const refreshButton = screen.getByRole('button', { name: /refresh sessions/i });
+  expect(refreshButton).toHaveFocus();
+  
+  await user.tab();
   const errorToggle = screen.getByLabelText('Simulate error on next fetch');
   expect(errorToggle).toHaveFocus();
   
   // Navigate back to sort button with Shift+Tab
-  await user.keyboard('{Shift>}{Tab}{/Shift}');
+  await user.keyboard('{Shift>}{Tab}{/Shift}'); // Back to refresh button
+  await user.keyboard('{Shift>}{Tab}{/Shift}'); // Back to sort button
   expect(sortButton).toHaveFocus();
   
   // Press Enter to toggle sort
